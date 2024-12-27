@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нэвтрэх хуудас</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+    <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+<body>
+    <div class="background-container">
+        <div class="login-container">
+            <h2>Налайх, Багахангай дүүрэг дэх ШШГХэлтэс</h2>
+            <form id="loginForm" onsubmit="login(event)">
+                <div class="input-group">
+                    <label for="username">Нэвтрэх нэр</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Нууц үг</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" id="loginButton">Нэвтрэх</button>
+            </form>
+            <p id="error-message" class="error-message-class"></p>
+        </div>
+        <script src="scripts.js"></script> <!-- Link to external JavaScript file -->
+    </div>
+</body>
+</html>
