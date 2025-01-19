@@ -16,39 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('penalty').textContent = userData["Ял шийтгэл"] || "Тодорхойгүй";
 
     // Populate the date information
-    document.getElementById('start-date').textContent = userData["Огноо"] || "Тодорхойгүй";
+    const date2 = new Date(userData["Огноо"] || 0);
+    date2.setDate(date2.getDate() + 1);
+    document.getElementById('start-date').textContent = date2.toISOString().split('T')[0];
     document.getElementById('rewarded-days').textContent = userData["Шагнасан хоног"] || 0;
     document.getElementById('stopped-days').textContent = userData["Зогссон хоног"] || 0;
-
-
-if (userData) {
-    // Parse the date from the JSON (format: "YYYY.MM.DD")
-    const startDate = new Date(userData.Огноо.replace(/\./g, '-')); // Replace '.' with '-' for compatibility
-    const stoppedDays = parseInt(userData['Зогссон хоног'], 10) || 0;
-    const punishedDays = parseInt(userData['Шийтгэсэн хоног'], 10) || 0;
-    const rewardedDays = parseInt(userData['Шагнасан хоног'], 10) || 0;
-
-    // Calculate the total days to add to the start date
-    const totalDays = punishedDays + stoppedDays - rewardedDays;
-
-    // Calculate the end date
-    const endDate = new Date(startDate);
-    endDate.setDate(startDate.getDate() + totalDays);
-
-    // Calculate the difference between the end date and today
-    const today = new Date();
-    const daysLeft = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
-
-    // Display the results
-    console.log('Start Date:', startDate.toISOString().split('T')[0]);
-    console.log('End Date:', endDate.toISOString().split('T')[0]);
-    console.log('Days Left:', daysLeft);
-
-    // Optional: Display in the DOM if needed
-    document.getElementById('end-date').textContent = `${endDate.toISOString().split('T')[0]}`;
-    document.getElementById('days-left').textContent = `${daysLeft}`;
-} else {
-    console.error('No userData found in localStorage');
-}
+    const date = new Date(userData["Дуусах өдөр"] || 0);
+    date.setDate(date.getDate() + 1);
+    document.getElementById('end-date').textContent = date.toISOString().split('T')[0];
+    var remaining = userData["Үлдсэн хоног "] || 0;
+    if(remaining > 0) {
+        document.getElementById('days-left').textContent = userData["Үлдсэн хоног "] || 0;
+    }else{
+        document.getElementById('days-left').textContent = 0;
+    }
 
 });
